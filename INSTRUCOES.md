@@ -75,7 +75,7 @@ Isso servirá os arquivos da pasta `dist` em um servidor local.
 
 5. O site estará disponível em: `https://victoravicente.github.io/portfolio-victor/`
 
-Nota: O `vite.config.js` já está configurado com `base: '/portfolio-victor/'` para funcionar corretamente no GitHub Pages.
+Nota: O `vite.config.js` já está configurado com `base: '/portfolio-victor/'` para funcionar corretamente no GitHub Pages. Um arquivo `404.html` foi adicionado para suportar roteamento de SPA (Single Page Application).
 
 ## Estrutura do Projeto
 
