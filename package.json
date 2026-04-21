@@ -1,11 +1,13 @@
 {
+  "homepage": "https://victoravicente.github.io/portfolio-victor/",
   "name": "portfolio-victor",
   "version": "1.0.0",
   "description": "Portfólio pessoal de Victor Vicente",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
