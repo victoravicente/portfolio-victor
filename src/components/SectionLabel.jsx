@@ -7,7 +7,7 @@ export function SectionLabel({ children }) {
       <Box sx={{ width: 32, height: 2, bgcolor: ACCENT, borderRadius: 1 }} />
       <Typography
         sx={{
-          fontFamily: "'Syne', sans-serif",
+          fontFamily: "'Playfair Display', serif",
           fontSize: "0.72rem",
           fontWeight: 700,
           letterSpacing: "0.18em",

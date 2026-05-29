@@ -42,14 +42,14 @@ export function EducationSection() {
                     border: `1px solid ${ACCENT2}30`,
                   }}
                 >
-                  <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "1.3rem", color: ACCENT2 }}>
+                  <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.3rem", color: ACCENT2 }}>
                     {edu.institution}
                   </Typography>
                 </Box>
                 <Typography sx={{ fontSize: "0.78rem", color: "text.secondary", mb: 0.75 }}>
                   {edu.full}
                 </Typography>
-                <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 600, fontSize: "1rem", color: "white", mb: 1 }}>
+                <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 600, fontSize: "1rem", color: "white", mb: 1 }}>
                   {edu.degree}
                 </Typography>
                 <Typography sx={{ fontSize: "0.8rem", color: ACCENT2, mb: 2 }}>

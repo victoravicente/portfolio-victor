@@ -37,7 +37,7 @@ export function SkillsSection() {
               >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2.5 }}>
                   <Box sx={{ width: 8, height: 8, borderRadius: "50%", bgcolor: color }} />
-                  <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 600, fontSize: "0.9rem", color }}>
+                  <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "0.9rem", color }}>
                     {category}
                   </Typography>
                 </Box>

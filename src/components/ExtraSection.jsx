@@ -4,7 +4,7 @@ import { FadeIn } from "./FadeIn";
 import { SectionLabel } from "./SectionLabel";
 
 export function ExtraSection() {
-  const extraColor = "#FFD166";
+  const extraColor = "#d4a574"; // Cor harmoniosa com o tema Dark Academia
 
   return (
     <Box id="extra" sx={{ py: { xs: 8, md: 12 } }}>
@@ -36,8 +36,8 @@ export function ExtraSection() {
                 width: 56,
                 height: 56,
                 borderRadius: "12px",
-                background: "rgba(255,200,0,0.12)",
-                border: "1px solid rgba(255,200,0,0.2)",
+                background: "rgba(212,165,116,0.12)",
+                border: "1px solid rgba(212,165,116,0.2)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -48,10 +48,10 @@ export function ExtraSection() {
             </Box>
             <Box>
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, alignItems: "center", mb: 1 }}>
-                <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: "1.05rem", color: extraColor }}>
+                <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.05rem", color: extraColor }}>
                   Equipe de Robótica — IFMS
                 </Typography>
-                <Chip label="2014 — 2018" size="small" sx={{ bgcolor: "rgba(255,200,0,0.1)", color: extraColor, border: "1px solid rgba(255,200,0,0.2)", fontSize: "0.72rem", height: 22 }} />
+                <Chip label="2014 — 2018" size="small" sx={{ bgcolor: "rgba(212,165,116,0.1)", color: extraColor, border: "1px solid rgba(212,165,116,0.2)", fontSize: "0.72rem", height: 22 }} />
               </Box>
               <Typography sx={{ color: "text.secondary", fontSize: "0.85rem", mb: 1 }}>
                 Instituto Federal de Mato Grosso do Sul · Campo Grande, MS

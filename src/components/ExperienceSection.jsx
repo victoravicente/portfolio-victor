@@ -68,7 +68,7 @@ export function ExperienceSection() {
                   >
                     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", mb: 1.5, gap: 1 }}>
                       <Box>
-                        <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: "1rem", color: exp.current ? ACCENT : "white", mb: 0.25 }}>
+                        <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: exp.current ? ACCENT : "white", mb: 0.25 }}>
                           {exp.role}
                         </Typography>
                         <Typography sx={{ color: "text.secondary", fontSize: "0.85rem" }}>

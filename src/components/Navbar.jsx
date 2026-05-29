@@ -70,15 +70,15 @@ export function Navbar() {
           alignItems: "center",
           justifyContent: "space-between",
           backdropFilter: scrolled ? "blur(20px)" : "none",
-          background: scrolled ? "rgba(7,11,20,0.85)" : "transparent",
-          borderBottom: scrolled ? `1px solid rgba(0,229,255,0.08)` : "none",
+          background: scrolled ? "rgba(13,31,26,0.85)" : "transparent",
+          borderBottom: scrolled ? `1px solid rgba(122,196,122,0.08)` : "none",
           transition: "all 0.3s ease",
         }}
       >
         <Typography
           sx={{
-            fontFamily: "'Syne', sans-serif",
-            fontWeight: 800,
+            fontFamily: "'Playfair Display', serif",
+            fontWeight: 700,
             fontSize: "1.1rem",
             color: "white",
             cursor: "pointer",
@@ -123,7 +123,7 @@ export function Navbar() {
         anchor="right"
         open={drawer}
         onClose={() => setDrawer(false)}
-        PaperProps={{ sx: { width: 280, background: "#0D1117", borderLeft: `1px solid rgba(0,229,255,0.1)` } }}
+        PaperProps={{ sx: { width: 280, background: "#132b24", borderLeft: `1px solid rgba(122,196,122,0.1)` } }}
       >
         <Box sx={{ p: 3, display: "flex", justifyContent: "flex-end" }}>
           <IconButton onClick={() => setDrawer(false)} sx={{ color: "white" }}>

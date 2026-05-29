@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import {
   ThemeProvider,
-  createTheme,
   CssBaseline,
   Box,
   Container,
@@ -29,202 +28,8 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import PersonIcon from "@mui/icons-material/Person";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import { theme, ACCENT, ACCENT2, NAV_ITEMS, EXPERIENCE, SKILLS, EDUCATION, CERTS } from "./src/constants";
 
-const ACCENT = "#00E5FF";
-const ACCENT2 = "#7C4DFF";
-
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: { main: ACCENT },
-    secondary: { main: ACCENT2 },
-    background: { default: "#070B14", paper: "#0D1117" },
-    text: { primary: "#E8EDF5", secondary: "#8892A4" },
-  },
-  typography: {
-    fontFamily: "'DM Sans', sans-serif",
-    h1: { fontFamily: "'Syne', sans-serif", fontWeight: 800 },
-    h2: { fontFamily: "'Syne', sans-serif", fontWeight: 700 },
-    h3: { fontFamily: "'Syne', sans-serif", fontWeight: 700 },
-    h4: { fontFamily: "'Syne', sans-serif", fontWeight: 600 },
-    h5: { fontFamily: "'Syne', sans-serif", fontWeight: 600 },
-    h6: { fontFamily: "'Syne', sans-serif", fontWeight: 600 },
-  },
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #070B14; }
-        ::-webkit-scrollbar-thumb { background: ${ACCENT}44; border-radius: 4px; }
-        * { box-sizing: border-box; }
-        ::selection { background: ${ACCENT}33; }
-      `,
-    },
-  },
-});
-
-const NAV_ITEMS = [
-  { label: "Sobre", id: "sobre", icon: <PersonIcon fontSize="small" /> },
-  { label: "Skills", id: "skills", icon: <CodeIcon fontSize="small" /> },
-  { label: "Experiência", id: "experiencia", icon: <WorkIcon fontSize="small" /> },
-  { label: "Formação", id: "formacao", icon: <SchoolIcon fontSize="small" /> },
-  { label: "Certificados", id: "certificados", icon: <VerifiedIcon fontSize="small" /> },
-  { label: "Extracurricular", id: "extra", icon: <EmojiEventsIcon fontSize="small" /> },
-];
-
-const EXPERIENCE = [
-  {
-    company: "Sicredi",
-    role: "Assistente de Desenvolvimento de Software",
-    period: "Mai. 2024 — Atual",
-    location: "Campo Grande, MS",
-    bullets: [
-      "Desenvolvimento de automações e soluções backend com Python e UiPath, focadas em eficiência e escalabilidade.",
-      "Arquitetura de integrações via APIs, substituindo automações legadas e aumentando a confiabilidade.",
-    ],
-    current: true,
-  },
-  {
-    company: "Sicredi",
-    role: "Assistente de Processos (RPA e Workflow)",
-    period: "Fev. 2023 — Mai. 2024",
-    location: "Campo Grande, MS",
-    bullets: [
-      "Implantação e padronização de RPA com UiPath e Power Automate (Desktop/Web).",
-      "Migração de bots para integrações via API e estruturação da base técnica.",
-    ],
-  },
-  {
-    company: "Sicredi",
-    role: "Desenvolvedor Full Stack",
-    period: "Jun. 2021 — Fev. 2023",
-    location: "Campo Grande, MS",
-    bullets: [
-      "Desenvolvimento de sistemas internos, dashboards e indicadores (Power BI), atuando em backend e frontend.",
-    ],
-  },
-  {
-    company: "Sicredi",
-    role: "Desenvolvedor Full Stack — Estágio",
-    period: "Set. 2019 — Jun. 2021",
-    location: "Campo Grande, MS",
-    bullets: [
-      "Desenvolvimento de aplicação web com React + Node.js e apoio a dados e dashboards.",
-    ],
-  },
-];
-
-const SKILLS = [
-  {
-    category: "Back-end",
-    color: ACCENT,
-    items: ["Java", "Spring Boot", "REST APIs", "Microservices", "Node.js", "Python", "Go"],
-  },
-  {
-    category: "Front-end",
-    color: "#FF6B9D",
-    items: ["React", "React Native", "HTML5", "CSS3", "SASS", "LESS"],
-  },
-  {
-    category: "Databases",
-    color: "#FFD166",
-    items: ["SQL", "PL/SQL", "Oracle", "MongoDB"],
-  },
-  {
-    category: "DevOps & Cloud",
-    color: "#06D6A0",
-    items: ["Docker", "Kubernetes", "Jenkins", "Terraform", "AWS", "Git"],
-  },
-  {
-    category: "Arquitetura",
-    color: ACCENT2,
-    items: ["Clean Code", "SOLID", "Software Architecture", "JUnit", "Mockito"],
-  },
-  {
-    category: "Metodologias",
-    color: "#FF9F1C",
-    items: ["Scrum", "Kanban", "Agile", "UiPath", "Power Automate"],
-  },
-];
-
-const EDUCATION = [
-  {
-    institution: "UFMS",
-    full: "Universidade Federal de Mato Grosso do Sul",
-    degree: "Bacharelado em Engenharia de Software",
-    period: "Mar. 2019 — Dez. 2025",
-    note: "Ênfase em princípios de engenharia de software, arquitetura e desenvolvimento backend.",
-  },
-  {
-    institution: "IFMS",
-    full: "Instituto Federal de Mato Grosso do Sul",
-    degree: "Técnico em Informática",
-    period: "Jan. 2014 — Jan. 2018",
-    note: "Formação técnica com ênfase em programação e sistemas de banco de dados.",
-  },
-];
-
-const CERTS = [
-  { name: "AWS Cloud Practitioner", platform: "Amazon Web Services", year: "2024", color: "#FF9900" },
-  { name: "Docker & Kubernetes", platform: "Udemy", year: "2023", color: "#A435F0" },
-  { name: "Spring Boot Avançado", platform: "Udemy", year: "2023", color: "#A435F0" },
-  { name: "Clean Architecture", platform: "Udemy", year: "2022", color: "#A435F0" },
-  { name: "Python para Automação", platform: "Alura", year: "2023", color: "#00C86F" },
-  { name: "UiPath Developer", platform: "UiPath Academy", year: "2023", color: "#FA4616" },
-];
-
-function useInView(threshold = 0.15) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-  return [ref, visible];
-}
-
-function FadeIn({ children, delay = 0, direction = "up" }) {
-  const [ref, visible] = useInView();
-  const transforms = { up: "translateY(32px)", left: "translateX(-32px)", right: "translateX(32px)", none: "none" };
-  return (
-    <Box
-      ref={ref}
-      sx={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "none" : transforms[direction],
-        transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
-      }}
-    >
-      {children}
-    </Box>
-  );
-}
-
-function SectionLabel({ children }) {
-  return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 5 }}>
-      <Box sx={{ width: 32, height: 2, bgcolor: ACCENT, borderRadius: 1 }} />
-      <Typography
-        sx={{
-          fontFamily: "'Syne', sans-serif",
-          fontSize: "0.72rem",
-          fontWeight: 700,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: ACCENT,
-        }}
-      >
-        {children}
-      </Typography>
-    </Box>
-  );
-}
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -268,14 +73,14 @@ function Navbar() {
           alignItems: "center",
           justifyContent: "space-between",
           backdropFilter: scrolled ? "blur(20px)" : "none",
-          background: scrolled ? "rgba(7,11,20,0.85)" : "transparent",
-          borderBottom: scrolled ? `1px solid rgba(0,229,255,0.08)` : "none",
+          background: scrolled ? "rgba(13,31,26,0.85)" : "transparent",
+          borderBottom: scrolled ? `1px solid rgba(122,196,122,0.08)` : "none",
           transition: "all 0.3s ease",
         }}
       >
         <Typography
           sx={{
-            fontFamily: "'Syne', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 800,
             fontSize: "1.1rem",
             color: "white",
@@ -321,7 +126,7 @@ function Navbar() {
         anchor="right"
         open={drawer}
         onClose={() => setDrawer(false)}
-        PaperProps={{ sx: { width: 280, background: "#0D1117", borderLeft: `1px solid rgba(0,229,255,0.1)` } }}
+        PaperProps={{ sx: { width: 280, background: "#132b24", borderLeft: `1px solid rgba(122,196,122,0.1)` } }}
       >
         <Box sx={{ p: 3, display: "flex", justifyContent: "flex-end" }}>
           <IconButton onClick={() => setDrawer(false)} sx={{ color: "white" }}>
@@ -372,8 +177,8 @@ function HeroSection() {
         sx={{
           position: "absolute", inset: 0, zIndex: 0,
           backgroundImage: `
-            linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px)
+            linear-gradient(rgba(122,196,122,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(122,196,122,0.03) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
         }}
@@ -551,7 +356,7 @@ function SkillsSection() {
               >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2.5 }}>
                   <Box sx={{ width: 8, height: 8, borderRadius: "50%", bgcolor: color }} />
-                  <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 600, fontSize: "0.9rem", color }}>
+                  <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 600, fontSize: "0.9rem", color }}>
                     {category}
                   </Typography>
                 </Box>
@@ -645,7 +450,7 @@ function ExperienceSection() {
                   >
                     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", mb: 1.5, gap: 1 }}>
                       <Box>
-                        <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: "1rem", color: exp.current ? ACCENT : "white", mb: 0.25 }}>
+                        <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: exp.current ? ACCENT : "white", mb: 0.25 }}>
                           {exp.role}
                         </Typography>
                         <Typography sx={{ color: "text.secondary", fontSize: "0.85rem" }}>
@@ -716,14 +521,14 @@ function EducationSection() {
                     border: `1px solid ${ACCENT2}30`,
                   }}
                 >
-                  <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "1.3rem", color: ACCENT2 }}>
+                  <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.3rem", color: ACCENT2 }}>
                     {edu.institution}
                   </Typography>
                 </Box>
                 <Typography sx={{ fontSize: "0.78rem", color: "text.secondary", mb: 0.75 }}>
                   {edu.full}
                 </Typography>
-                <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 600, fontSize: "1rem", color: "white", mb: 1 }}>
+                <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 600, fontSize: "1rem", color: "white", mb: 1 }}>
                   {edu.degree}
                 </Typography>
                 <Typography sx={{ fontSize: "0.8rem", color: ACCENT2, mb: 2 }}>
@@ -836,14 +641,14 @@ function ExtraSection() {
                 flexShrink: 0,
               }}
             >
-              <PrecisionManufacturingIcon sx={{ color: "#FFD166", fontSize: 26 }} />
+              <PrecisionManufacturingIcon sx={{ color: "#d4a574", fontSize: 26 }} />
             </Box>
             <Box>
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, alignItems: "center", mb: 1 }}>
-                <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: "1.05rem", color: "#FFD166" }}>
+                <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.05rem", color: "#d4a574" }}>
                   Equipe de Robótica — IFMS
                 </Typography>
-                <Chip label="2014 — 2018" size="small" sx={{ bgcolor: "rgba(255,200,0,0.1)", color: "#FFD166", border: "1px solid rgba(255,200,0,0.2)", fontSize: "0.72rem", height: 22 }} />
+                <Chip label="2014 — 2018" size="small" sx={{ bgcolor: "rgba(212,165,116,0.1)", color: "#d4a574", border: "1px solid rgba(212,165,116,0.2)", fontSize: "0.72rem", height: 22 }} />
               </Box>
               <Typography sx={{ color: "text.secondary", fontSize: "0.85rem", mb: 1 }}>
                 Instituto Federal de Mato Grosso do Sul · Campo Grande, MS
@@ -874,7 +679,7 @@ function Footer() {
       }}
     >
       <Container maxWidth="lg">
-        <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "1.5rem", mb: 2 }}>
+        <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", mb: 2 }}>
           victor<span style={{ color: ACCENT }}>.</span>
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 3 }}>

@@ -1,35 +1,61 @@
 import { createTheme } from "@mui/material";
 
-export const ACCENT = "#00E5FF";
-export const ACCENT2 = "#7C4DFF";
+// Dark Academia Digital Theme Colors
+export const ACCENT = "#7ac47a";           // Verde-hortelã
+export const ACCENT2 = "#c97e6b";          // Terracota
+export const VERDE_FLORESTA = "#1a3d2e";   // Verde-floresta escuro
+export const CREME = "#e8dcc8";            // Creme/marfim
+export const CREME_ESCURO = "#a69b8a";    // Creme mais escuro para text secondary
 
 export const theme = createTheme({
   palette: {
     mode: "dark",
     primary: { main: ACCENT },
     secondary: { main: ACCENT2 },
-    background: { default: "#070B14", paper: "#0D1117" },
-    text: { primary: "#E8EDF5", secondary: "#8892A4" },
+    background: { default: "#0d1f1a", paper: "#132b24" },
+    text: { primary: CREME, secondary: CREME_ESCURO },
   },
   typography: {
     fontFamily: "'DM Sans', sans-serif",
-    h1: { fontFamily: "'Syne', sans-serif", fontWeight: 800 },
-    h2: { fontFamily: "'Syne', sans-serif", fontWeight: 700 },
-    h3: { fontFamily: "'Syne', sans-serif", fontWeight: 700 },
-    h4: { fontFamily: "'Syne', sans-serif", fontWeight: 600 },
-    h5: { fontFamily: "'Syne', sans-serif", fontWeight: 600 },
-    h6: { fontFamily: "'Syne', sans-serif", fontWeight: 600 },
+    h1: { 
+      fontFamily: "'Playfair Display', serif", 
+      fontWeight: 700,
+      textTransform: "uppercase",
+      letterSpacing: "0.05em",
+    },
+    h2: { 
+      fontFamily: "'Playfair Display', serif", 
+      fontWeight: 700,
+      textTransform: "uppercase",
+      letterSpacing: "0.03em",
+    },
+    h3: { 
+      fontFamily: "'Playfair Display', serif", 
+      fontWeight: 700,
+    },
+    h4: { 
+      fontFamily: "'DM Sans', sans-serif", 
+      fontWeight: 600 
+    },
+    h5: { 
+      fontFamily: "'DM Sans', sans-serif", 
+      fontWeight: 600 
+    },
+    h6: { 
+      fontFamily: "'DM Sans', sans-serif", 
+      fontWeight: 600 
+    },
   },
   components: {
     MuiCssBaseline: {
       styleOverrides: `
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
         html { scroll-behavior: smooth; }
         ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #070B14; }
-        ::-webkit-scrollbar-thumb { background: ${ACCENT}44; border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #0d1f1a; }
+        ::-webkit-scrollbar-thumb { background: ${ACCENT}66; border-radius: 4px; }
         * { box-sizing: border-box; }
-        ::selection { background: ${ACCENT}33; }
+        ::selection { background: ${ACCENT}40; color: #0d1f1a; }
       `,
     },
   },
@@ -94,17 +120,17 @@ export const SKILLS = [
   },
   {
     category: "Front-end",
-    color: "#FF6B9D",
+    color: "#d97a7a",
     items: ["React", "React Native", "HTML5", "CSS3", "SASS", "LESS"],
   },
   {
     category: "Databases",
-    color: "#FFD166",
+    color: "#d4a574",
     items: ["SQL", "PL/SQL", "Oracle", "MongoDB"],
   },
   {
     category: "DevOps & Cloud",
-    color: "#06D6A0",
+    color: "#6dd97a",
     items: ["Docker", "Kubernetes", "Jenkins", "Terraform", "AWS", "Git"],
   },
   {
@@ -114,7 +140,7 @@ export const SKILLS = [
   },
   {
     category: "Metodologias",
-    color: "#FF9F1C",
+    color: "#d4a574",
     items: ["Scrum", "Kanban", "Agile", "UiPath", "Power Automate"],
   },
 ];

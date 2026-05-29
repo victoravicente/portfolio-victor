@@ -14,7 +14,7 @@ export function Footer() {
       }}
     >
       <Container maxWidth="lg">
-        <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "1.5rem", mb: 2 }}>
+        <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", mb: 2 }}>
           victor<span style={{ color: ACCENT }}>.</span>
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 3 }}>
