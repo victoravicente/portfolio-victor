@@ -24,7 +24,7 @@ export function ExperienceSection() {
             sx={{
               position: "absolute",
               left: { xs: 16, md: 24 },
-              top: 8,
+              top: -2,
               bottom: 8,
               width: 1,
               background: `linear-gradient(to bottom, ${ACCENT}, ${ACCENT2}, transparent)`,

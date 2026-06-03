@@ -388,7 +388,7 @@ function SkillsSection() {
 
 function ExperienceSection() {
   return (
-    <Box id="experiencia" sx={{ py: { xs: 8, md: 12 } }}>
+    <Box id="experiencia" sx={{ py: { xs: 15, md: 12 } }}>
       <Container maxWidth="lg">
         <FadeIn>
           <SectionLabel>Experiência</SectionLabel>
