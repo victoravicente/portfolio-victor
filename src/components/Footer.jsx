@@ -19,7 +19,7 @@ export function Footer() {
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 3 }}>
           {[
-            { icon: <LaunchIcon />, href: "https://linkedin.com/in/victor-vicente-9b205a192" },
+            { icon: <LaunchIcon />, href: "https://www.linkedin.com/in/victor-0-vicente/" },
             { icon: <GitHubIcon />, href: "https://github.com/victoravicente" },
             { icon: <EmailIcon />, href: "mailto:victorantoniovicente@gmail.com" },
           ].map(({ icon, href }, i) => (
