@@ -1,3 +1,4 @@
+import { SHOW_CERTS } from "./constants";
 import { Navbar } from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
 import { SkillsSection } from "./components/SkillsSection";
@@ -7,6 +8,7 @@ import { EducationSection } from "./components/EducationSection";
 import { CertsSection } from "./components/CertsSection";
 import { ExtraSection } from "./components/ExtraSection";
 import { Footer } from "./components/Footer";
+import { ResumeDocument } from "./components/ResumeDocument";
 
 export default function App() {
   return (
@@ -18,10 +20,11 @@ export default function App() {
         <ProjectsSection />
         <ExperienceSection />
         <EducationSection />
-        <CertsSection />
+        {SHOW_CERTS && <CertsSection />}
         <ExtraSection />
       </main>
       <Footer />
+      <ResumeDocument />
     </div>
   );
 }

@@ -7,6 +7,12 @@
     <title>Victor Vicente · Engenheiro de Software — Portfólio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>
+      (function () {
+        var theme = localStorage.getItem("portfolio-theme");
+        if (theme === "light") document.documentElement.setAttribute("data-theme", "light");
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

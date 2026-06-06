@@ -1,17 +1,21 @@
-import { NAV_ITEMS, PERSONAL } from "../constants";
+import { CONTACT } from "../constants";
+import { useLanguage } from "../context/LanguageContext";
 
 export function Footer() {
+  const { content } = useLanguage();
+  const { personal, nav, ui } = content;
+
   const links = [
-    { label: "GitHub", href: PERSONAL.github },
-    { label: "LinkedIn", href: PERSONAL.linkedin },
-    { label: "Email", href: `mailto:${PERSONAL.email}` },
+    { label: "GitHub", href: CONTACT.github },
+    { label: "LinkedIn", href: CONTACT.linkedin },
+    { label: "Email", href: `mailto:${CONTACT.email}` },
   ];
 
   return (
     <footer id="contato" className="border-t border-gothic bg-background">
       <div className="section-container py-16 md:py-20 flex flex-col items-center gap-8">
         <h2 className="font-display text-display-lg-mobile text-primary text-center uppercase">
-          Vamos trabalhar juntos.
+          {ui.footerCta}
         </h2>
 
         <ul className="flex flex-wrap justify-center gap-6">
@@ -31,11 +35,11 @@ export function Footer() {
 
         <div className="w-full border-t border-gothic pt-8 mt-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <span className="font-mono text-label-caps text-tertiary text-center md:text-left uppercase tracking-widest">
-            © {PERSONAL.year} {PERSONAL.brand} // REGISTRO_CRIPTOGRAFADO
+            © {CONTACT.year} {personal.brand} // {ui.footerLedger}
           </span>
 
           <nav className="flex flex-wrap justify-center gap-6">
-            {NAV_ITEMS.map(({ label, id }) => (
+            {nav.map(({ label, id }) => (
               <a
                 key={id}
                 href={`#${id}`}

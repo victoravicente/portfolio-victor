@@ -1,19 +1,22 @@
-import { EDUCATION } from "../constants";
+import { useLanguage } from "../context/LanguageContext";
 import { FadeIn } from "./FadeIn";
 import { SectionHeader } from "./SectionHeader";
 
 export function EducationSection() {
+  const { content } = useLanguage();
+  const { education, sections } = content;
+
   return (
     <section id="formacao" className="py-20 md:py-32 border-t border-gothic">
       <div className="section-container">
         <SectionHeader
-          path="~/registros/credenciais"
-          title="FORMAÇÃO // CREDENCIAIS"
-          subtitle="Registro imutável de formação acadêmica formal. Verificado e documentado."
+          path={sections.education.path}
+          title={sections.education.title}
+          subtitle={sections.education.subtitle}
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {EDUCATION.map((edu, i) => (
+          {education.map((edu, i) => (
             <FadeIn key={i} delay={i * 0.15}>
               <article className="bg-surface-container border border-gothic p-8 hover:border-tertiary transition-colors duration-500 group relative overflow-hidden flex flex-col justify-between min-h-[280px]">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gothic to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -32,10 +35,7 @@ export function EducationSection() {
                   <p className="font-sans text-body-main text-on-surface-variant">{edu.note}</p>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {edu.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-sans text-label-caps border border-gothic px-2 py-1 text-accent"
-                      >
+                      <span key={tag} className="font-sans text-label-caps border border-gothic px-2 py-1 text-accent">
                         {tag}
                       </span>
                     ))}
