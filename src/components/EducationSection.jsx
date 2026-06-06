@@ -1,69 +1,51 @@
-import { Box, Container, Typography, Divider } from "@mui/material";
-import { EDUCATION, ACCENT2 } from "../constants";
+import { EDUCATION } from "../constants";
 import { FadeIn } from "./FadeIn";
-import { SectionLabel } from "./SectionLabel";
+import { SectionHeader } from "./SectionHeader";
 
 export function EducationSection() {
   return (
-    <Box id="formacao" sx={{ py: { xs: 8, md: 12 } }}>
-      <Container maxWidth="lg">
-        <FadeIn>
-          <SectionLabel>Formação</SectionLabel>
-          <Typography variant="h2" sx={{ fontSize: { xs: "1.8rem", md: "2.5rem" }, mb: 2 }}>
-            Formação Acadêmica
-          </Typography>
-          <Typography sx={{ color: "text.secondary", mb: 6, maxWidth: 500 }}>
-            Base acadêmica sólida em computação e engenharia de software.
-          </Typography>
-        </FadeIn>
+    <section id="formacao" className="py-20 md:py-32 border-t border-gothic">
+      <div className="section-container">
+        <SectionHeader
+          path="~/registros/credenciais"
+          title="FORMAÇÃO // CREDENCIAIS"
+          subtitle="Registro imutável de formação acadêmica formal. Verificado e documentado."
+        />
 
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: 3 }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {EDUCATION.map((edu, i) => (
             <FadeIn key={i} delay={i * 0.15}>
-              <Box
-                sx={{
-                  p: 3.5,
-                  borderRadius: "16px",
-                  border: "1px solid rgba(255,255,255,0.07)",
-                  background: "rgba(255,255,255,0.02)",
-                  height: "100%",
-                  transition: "all 0.3s",
-                  "&:hover": { borderColor: `${ACCENT2}40`, transform: "translateY(-4px)", background: `${ACCENT2}06` },
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    px: 2,
-                    py: 0.5,
-                    mb: 2,
-                    borderRadius: "6px",
-                    background: `${ACCENT2}18`,
-                    border: `1px solid ${ACCENT2}30`,
-                  }}
-                >
-                  <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.3rem", color: ACCENT2 }}>
-                    {edu.institution}
-                  </Typography>
-                </Box>
-                <Typography sx={{ fontSize: "0.78rem", color: "text.secondary", mb: 0.75 }}>
-                  {edu.full}
-                </Typography>
-                <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 600, fontSize: "1rem", color: "white", mb: 1 }}>
-                  {edu.degree}
-                </Typography>
-                <Typography sx={{ fontSize: "0.8rem", color: ACCENT2, mb: 2 }}>
-                  {edu.period}
-                </Typography>
-                <Divider sx={{ borderColor: "rgba(255,255,255,0.06)", mb: 2 }} />
-                <Typography sx={{ fontSize: "0.85rem", color: "text.secondary", lineHeight: 1.7 }}>
-                  {edu.note}
-                </Typography>
-              </Box>
+              <article className="bg-surface-container border border-gothic p-8 hover:border-tertiary transition-colors duration-500 group relative overflow-hidden flex flex-col justify-between min-h-[280px]">
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gothic to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                <header className="flex justify-between items-start mb-8 gap-4">
+                  <div className="flex flex-col gap-2">
+                    <span className="font-mono text-code-block text-primary">{edu.degree}</span>
+                    <h3 className="font-display text-headline-md text-primary">{edu.full}</h3>
+                  </div>
+                  <div className="font-sans text-label-caps text-on-surface-variant border border-gothic px-3 py-1 rounded-full whitespace-nowrap">
+                    [ {edu.period} ]
+                  </div>
+                </header>
+
+                <div className="flex flex-col gap-4">
+                  <p className="font-sans text-body-main text-on-surface-variant">{edu.note}</p>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {edu.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-sans text-label-caps border border-gothic px-2 py-1 text-accent"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
             </FadeIn>
           ))}
-        </Box>
-      </Container>
-    </Box>
+        </div>
+      </div>
+    </section>
   );
 }

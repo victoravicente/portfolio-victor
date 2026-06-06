@@ -1,22 +1,10 @@
-import { Box, Typography } from "@mui/material";
-import { ACCENT } from "../constants";
-
 export function SectionLabel({ children }) {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 5 }}>
-      <Box sx={{ width: 32, height: 2, bgcolor: ACCENT, borderRadius: 1 }} />
-      <Typography
-        sx={{
-          fontFamily: "'Playfair Display', serif",
-          fontSize: "0.72rem",
-          fontWeight: 700,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: ACCENT,
-        }}
-      >
+    <div className="flex items-center gap-3 mb-8">
+      <div className="w-8 h-0.5 bg-primary rounded-full" />
+      <span className="text-label-sm text-primary">
         {children}
-      </Typography>
-    </Box>
+      </span>
+    </div>
   );
 }

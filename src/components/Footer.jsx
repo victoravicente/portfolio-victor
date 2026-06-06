@@ -1,48 +1,52 @@
-import { Box, Container, Typography, IconButton } from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email";
-import LaunchIcon from "@mui/icons-material/Launch";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import { ACCENT } from "../constants";
+import { NAV_ITEMS, PERSONAL } from "../constants";
 
 export function Footer() {
+  const links = [
+    { label: "GitHub", href: PERSONAL.github },
+    { label: "LinkedIn", href: PERSONAL.linkedin },
+    { label: "Email", href: `mailto:${PERSONAL.email}` },
+  ];
+
   return (
-    <Box
-      sx={{
-        py: 6,
-        borderTop: "1px solid rgba(255,255,255,0.05)",
-        textAlign: "center",
-      }}
-    >
-      <Container maxWidth="lg">
-        <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", mb: 2 }}>
-          victor<span style={{ color: ACCENT }}>.</span>
-        </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 3 }}>
-          {[
-            { icon: <LaunchIcon />, href: "https://www.linkedin.com/in/victor-0-vicente/" },
-            { icon: <GitHubIcon />, href: "https://github.com/victoravicente" },
-            { icon: <EmailIcon />, href: "mailto:victorantoniovicente@gmail.com" },
-          ].map(({ icon, href }, i) => (
-            <IconButton
-              key={i}
-              component="a"
-              href={href}
-              target="_blank"
-              rel="noopener"
-              sx={{
-                color: "rgba(255,255,255,0.4)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                "&:hover": { color: ACCENT, borderColor: ACCENT, background: `${ACCENT}0A` },
-              }}
-            >
-              {icon}
-            </IconButton>
+    <footer id="contato" className="border-t border-gothic bg-background">
+      <div className="section-container py-16 md:py-20 flex flex-col items-center gap-8">
+        <h2 className="font-display text-display-lg-mobile text-primary text-center uppercase">
+          Vamos trabalhar juntos.
+        </h2>
+
+        <ul className="flex flex-wrap justify-center gap-6">
+          {links.map(({ label, href }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target={href.startsWith("mailto") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="font-sans text-body-main text-on-surface-variant hover:text-tertiary transition-all duration-200 uppercase tracking-widest"
+              >
+                {label}
+              </a>
+            </li>
           ))}
-        </Box>
-        <Typography sx={{ color: "text.secondary", fontSize: "0.78rem" }}>
-          © {new Date().getFullYear()} Victor A. Vicente · Desenvolvido com React + Material UI
-        </Typography>
-      </Container>
-    </Box>
+        </ul>
+
+        <div className="w-full border-t border-gothic pt-8 mt-4 flex flex-col md:flex-row justify-between items-center gap-4">
+          <span className="font-mono text-label-caps text-tertiary text-center md:text-left uppercase tracking-widest">
+            © {PERSONAL.year} {PERSONAL.brand} // REGISTRO_CRIPTOGRAFADO
+          </span>
+
+          <nav className="flex flex-wrap justify-center gap-6">
+            {NAV_ITEMS.map(({ label, id }) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                className="font-sans text-label-caps text-on-surface-variant hover:text-primary underline decoration-tertiary hover:-translate-y-0.5 transition-transform uppercase tracking-widest"
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </footer>
   );
 }

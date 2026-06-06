@@ -1,68 +1,82 @@
-import { Box, Container, Typography, Chip } from "@mui/material";
-import { SKILLS } from "../constants";
+import { SKILL_LAYERS, META_COGNITION } from "../constants";
 import { FadeIn } from "./FadeIn";
-import { SectionLabel } from "./SectionLabel";
+import { SectionHeader } from "./SectionHeader";
+import { SkillBar } from "./SkillBar";
 
 export function SkillsSection() {
   return (
-    <Box id="skills" sx={{ py: { xs: 8, md: 12 } }}>
-      <Container maxWidth="lg">
-        <FadeIn>
-          <SectionLabel>Skills</SectionLabel>
-          <Typography variant="h2" sx={{ fontSize: { xs: "1.8rem", md: "2.5rem" }, mb: 2 }}>
-            Tecnologias & Ferramentas
-          </Typography>
-          <Typography sx={{ color: "text.secondary", mb: 6, maxWidth: 500 }}>
-            Stack técnico construído ao longo de mais de 5 anos de experiência profissional.
-          </Typography>
-        </FadeIn>
+    <section id="skills" className="py-20 md:py-32 border-t border-gothic">
+      <div className="section-container">
+        <SectionHeader
+          path="~/perfil/metricas.sh"
+          title="SKILLS // CAPACIDADE"
+          status="STATUS: OPERACIONAL"
+        />
 
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", lg: "repeat(3, 1fr)" }, gap: 2 }}>
-          {SKILLS.map(({ category, color, items }, i) => (
-            <FadeIn key={category} delay={i * 0.08}>
-              <Box
-                sx={{
-                  p: 3,
-                  borderRadius: "12px",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  background: "rgba(255,255,255,0.02)",
-                  height: "100%",
-                  transition: "all 0.3s",
-                  "&:hover": {
-                    borderColor: `${color}40`,
-                    background: `${color}06`,
-                    transform: "translateY(-4px)",
-                  },
-                }}
-              >
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2.5 }}>
-                  <Box sx={{ width: 8, height: 8, borderRadius: "50%", bgcolor: color }} />
-                  <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "0.9rem", color }}>
-                    {category}
-                  </Typography>
-                </Box>
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.75 }}>
-                  {items.map((item) => (
-                    <Chip
-                      key={item}
-                      label={item}
-                      size="small"
-                      sx={{
-                        bgcolor: `${color}12`,
-                        color: "rgba(255,255,255,0.75)",
-                        border: `1px solid ${color}25`,
-                        fontSize: "0.75rem",
-                        height: 26,
-                        "&:hover": { bgcolor: `${color}22` },
-                      }}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-16">
+          {SKILL_LAYERS.map((layer, layerIdx) => (
+            <FadeIn key={layer.layer} delay={layerIdx * 0.1} className="col-span-1 md:col-span-4">
+              <div className="border border-gothic bg-background flex flex-col h-full group hover:border-tertiary transition-colors duration-500">
+                <div className="border-b border-gothic p-4 flex items-center justify-between">
+                  <span className="font-sans text-label-caps text-primary uppercase tracking-widest">
+                    {layer.layer} :: {layer.category}
+                  </span>
+                  <span className="material-symbols-outlined text-tertiary text-sm">
+                    {layer.icon}
+                  </span>
+                </div>
+                <div className="p-6 flex flex-col gap-6 flex-grow">
+                  {layer.items.map((skill, i) => (
+                    <SkillBar
+                      key={skill.name}
+                      name={skill.name}
+                      level={skill.level}
+                      delay={i * 100}
                     />
                   ))}
-                </Box>
-              </Box>
+                </div>
+              </div>
             </FadeIn>
           ))}
-        </Box>
-      </Container>
-    </Box>
+        </div>
+
+        <FadeIn delay={0.3}>
+          <section className="border border-gothic bg-background p-8 md:p-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 border-l border-b border-gothic opacity-20 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 border-r border-t border-gothic opacity-20 pointer-events-none" />
+
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
+              <div className="md:col-span-4">
+                <span className="font-sans text-label-caps text-accent mb-4 block uppercase tracking-widest">
+                  META_COGNIÇÃO
+                </span>
+                <h3 className="font-display text-headline-md text-primary leading-tight">
+                  Modelos Mentais
+                  <br />
+                  <span className="italic text-on-surface-variant">&amp; Competências</span>
+                </h3>
+                <p className="font-sans text-body-main text-on-surface-variant mt-6 border-l-2 border-accent pl-4">
+                  A proficiência técnica constrói a estrutura, mas os frameworks metacognitivos definem sua integridade. Paradigmas operacionais para navegar restrições complexas de engenharia.
+                </p>
+              </div>
+
+              <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                {META_COGNITION.map((item) => (
+                  <div key={item.id} className="group cursor-default">
+                    <div className="flex items-baseline gap-3 border-b border-gothic pb-2 mb-3 group-hover:border-tertiary transition-colors">
+                      <span className="font-mono text-code-block text-tertiary">[{item.id}]</span>
+                      <h4 className="font-display text-headline-md text-primary text-2xl">{item.title}</h4>
+                    </div>
+                    <p className="font-sans text-body-main text-on-surface-variant">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </FadeIn>
+      </div>
+    </section>
   );
 }

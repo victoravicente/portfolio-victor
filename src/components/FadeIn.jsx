@@ -1,25 +1,26 @@
-import { Box } from "@mui/material";
 import { useInView } from "../hooks/useInView";
 
-export function FadeIn({ children, delay = 0, direction = "up" }) {
+export function FadeIn({ children, delay = 0, direction = "up", className = "" }) {
   const [ref, visible] = useInView();
+
   const transforms = {
-    up: "translateY(32px)",
-    left: "translateX(-32px)",
-    right: "translateX(32px)",
+    up: "translateY(20px)",
+    left: "translateX(-20px)",
+    right: "translateX(20px)",
     none: "none",
   };
 
   return (
-    <Box
+    <div
       ref={ref}
-      sx={{
+      className={className}
+      style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "none" : transforms[direction],
-        transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
+        transform: visible ? "none" : transforms[direction] ?? transforms.up,
+        transition: `opacity 0.8s ease-out ${delay}s, transform 0.8s ease-out ${delay}s`,
       }}
     >
       {children}
-    </Box>
+    </div>
   );
 }

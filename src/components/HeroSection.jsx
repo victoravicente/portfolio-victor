@@ -1,206 +1,221 @@
-import { Box, Container, Typography } from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email";
-import PhoneIcon from "@mui/icons-material/Phone";
-import LaunchIcon from "@mui/icons-material/Launch";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import { ACCENT, ACCENT2 } from "../constants";
-import { useInView } from "../hooks/useInView";
+import { useEffect, useState } from "react";
+import { ABOUT, PERSONAL } from "../constants";
+import { FadeIn } from "./FadeIn";
 
-export function HeroSection() {
-  const [ref, visible] = useInView(0.01);
+const TERMINAL_LINES = [
+  { cmd: "whoami", response: "victor_vicente", delay: 500 },
+  { cmd: "cat perfil.json", response: "{ cargo: 'Engenheiro de Software', status: 'Disponível' }", delay: 800 },
+  { cmd: "status", response: "[SISTEMA ONLINE] — Pronto para construir.", delay: 600 },
+];
+
+function TerminalTyping() {
+  const [lines, setLines] = useState([]);
+  const [currentCmd, setCurrentCmd] = useState("");
+  const [phase, setPhase] = useState("idle");
+  const [lineIndex, setLineIndex] = useState(0);
+  useEffect(() => {
+    if (lineIndex >= TERMINAL_LINES.length) {
+      setPhase("done");
+      return;
+    }
+
+    const line = TERMINAL_LINES[lineIndex];
+    const startTimer = setTimeout(() => {
+      setPhase("typing");
+      setCurrentCmd("");
+    }, line.delay);
+
+    return () => clearTimeout(startTimer);
+  }, [lineIndex]);
+
+  useEffect(() => {
+    if (phase !== "typing") return;
+
+    const line = TERMINAL_LINES[lineIndex];
+    if (currentCmd.length < line.cmd.length) {
+      const timer = setTimeout(() => {
+        setCurrentCmd(line.cmd.slice(0, currentCmd.length + 1));
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+
+    const responseTimer = setTimeout(() => {
+      setLines((prev) => [...prev, { cmd: line.cmd, response: line.response }]);
+      setLineIndex((i) => i + 1);
+      setPhase("idle");
+    }, 300);
+
+    return () => clearTimeout(responseTimer);
+  }, [phase, currentCmd, lineIndex]);
 
   return (
-    <Box
-      id="sobre"
-      ref={ref}
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        position: "relative",
-        overflow: "hidden",
-        pt: 10,
-      }}
-    >
-      {/* Background grid */}
-      <Box
-        sx={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 0,
-          backgroundImage: `
-            linear-gradient(rgba(122,196,122,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(122,196,122,0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: "60px 60px",
-        }}
-      />
-      {/* Glow orbs */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: "20%",
-          left: "-10%",
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          background: `radial-gradient(circle, ${ACCENT}18 0%, transparent 70%)`,
-          zIndex: 0,
-        }}
-      />
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: "10%",
-          right: "-5%",
-          width: 400,
-          height: 400,
-          borderRadius: "50%",
-          background: `radial-gradient(circle, ${ACCENT2}18 0%, transparent 70%)`,
-          zIndex: 0,
-        }}
-      />
+    <div className="font-mono text-code-block text-tertiary flex flex-col gap-2 min-h-[200px]">
+      {lines.map((line, i) => (
+        <div key={i}>
+          <div>
+            <span className="text-on-surface-variant">&gt; </span>
+            {line.cmd}
+          </div>
+          <div className="text-on-surface-variant mb-2">{line.response}</div>
+        </div>
+      ))}
+      {phase === "typing" && (
+        <div>
+          <span className="text-on-surface-variant">&gt; </span>
+          {currentCmd}
+          <span className="cursor-blink inline-block w-2 h-4 bg-tertiary align-middle ml-0.5" />
+        </div>
+      )}
+      {phase === "done" && (
+        <div>
+          <span className="text-on-surface-variant">&gt; </span>
+          <span className="cursor-blink inline-block w-2 h-4 bg-tertiary align-middle" />
+        </div>
+      )}
+    </div>
+  );
+}
 
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        <Box sx={{ maxWidth: 760 }}>
-          <Box
-            sx={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 1,
-              px: 2,
-              py: 0.75,
-              mb: 3,
-              border: `1px solid ${ACCENT}40`,
-              borderRadius: "100px",
-              background: `${ACCENT}0A`,
-              opacity: visible ? 1 : 0,
-              transform: visible ? "none" : "translateY(20px)",
-              transition: "all 0.6s ease 0.1s",
-            }}
-          >
-            <Box sx={{ width: 6, height: 6, borderRadius: "50%", bgcolor: ACCENT, animation: "pulse 2s infinite" }} />
-            <Typography sx={{ fontSize: "0.78rem", color: ACCENT, fontWeight: 500, letterSpacing: "0.05em" }}>
-              Disponível para oportunidades
-            </Typography>
-          </Box>
+export function HeroSection() {
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: { xs: "2.8rem", sm: "4rem", md: "5.5rem" },
-              lineHeight: 1.05,
-              mb: 1,
-              opacity: visible ? 1 : 0,
-              transform: visible ? "none" : "translateY(30px)",
-              transition: "all 0.7s ease 0.2s",
-            }}
-          >
-            Victor Vicente
-          </Typography>
+  return (
+    <section id="sobre" className="pt-24 md:pt-32 pb-20 md:pb-32">
+      <div className="section-container">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+          {/* Terminal lateral */}
+          <FadeIn className="lg:col-span-5">
+            <aside className="flex flex-col gap-8 lg:pr-8">
+              <div className="border border-gothic bg-surface-container-lowest flex flex-col hover:border-tertiary transition-colors duration-300">
+                <div className="border-b border-gothic px-4 py-2 flex items-center justify-between bg-surface-container">
+                  <div className="font-mono text-code-block text-on-surface-variant flex items-center gap-2">
+                    <span className="text-tertiary opacity-70">~</span>
+                    <span>/sistema/agentes/victor/metadata.sys</span>
+                  </div>
+                  <div className="w-2 h-2 bg-tertiary cursor-blink" />
+                </div>
+                <div className="p-6 font-mono text-code-block flex flex-col gap-4">
+                  <div>
+                    <span className="text-on-surface-variant text-xs block mb-1">STATUS</span>
+                    <span className="text-tertiary">ONLINE // PRONTO_PARA_TRABALHO</span>
+                  </div>
+                  <div className="w-full h-px bg-gothic opacity-30" />
+                  <div>
+                    <span className="text-on-surface-variant text-xs block mb-1">CLASSE</span>
+                    <span>{PERSONAL.title}</span>
+                  </div>
+                  <div className="w-full h-px bg-gothic opacity-30" />
+                  <div>
+                    <span className="text-on-surface-variant text-xs block mb-1">LOCALIZAÇÃO</span>
+                    <span>{PERSONAL.location}</span>
+                  </div>
+                  <div className="w-full h-px bg-gothic opacity-30" />
+                  <div>
+                    <span className="text-on-surface-variant text-xs block mb-1">DIRETRIZ</span>
+                    <span className="text-primary leading-relaxed">{ABOUT.headline}</span>
+                  </div>
+                </div>
+              </div>
 
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: { xs: "2.8rem", sm: "4rem", md: "5.5rem" },
-              lineHeight: 1.05,
-              mb: 4,
-              color: "transparent",
-              WebkitTextStroke: `1px ${ACCENT}80`,
-              opacity: visible ? 1 : 0,
-              transform: visible ? "none" : "translateY(30px)",
-              transition: "all 0.7s ease 0.35s",
-            }}
-          >
-            Engenheiro de Software
-          </Typography>
+              <div className="flex flex-wrap gap-2">
+                {ABOUT.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="border border-gothic rounded-full px-3 py-1 font-sans text-label-caps text-on-surface-variant uppercase tracking-wider"
+                  >
+                    {tag}
+                  </span>
+                ))}
+                <span className="border border-tertiary bg-tertiary/10 rounded-full px-3 py-1 font-sans text-label-caps text-tertiary uppercase tracking-wider">
+                  APIS_REST
+                </span>
+              </div>
+            </aside>
+          </FadeIn>
 
-          <Typography
-            sx={{
-              fontSize: { xs: "1rem", md: "1.1rem" },
-              color: "text.secondary",
-              lineHeight: 1.8,
-              maxWidth: 580,
-              mb: 5,
-              opacity: visible ? 1 : 0,
-              transform: visible ? "none" : "translateY(20px)",
-              transition: "all 0.7s ease 0.5s",
-            }}
-          >
-            Backend engineer com mais de 5 anos de experiência construindo sistemas escaláveis e confiáveis com Python, Java e JavaScript. Especialista em arquitetura de APIs e automação inteligente.
-          </Typography>
+          {/* Conteúdo editorial */}
+          <article className="lg:col-span-7 lg:col-start-6 flex flex-col pt-4 lg:pt-0">
+            <FadeIn delay={0.1}>
+              <div className="flex items-center gap-2 text-tertiary mb-6">
+                <span className="w-2 h-2 bg-tertiary animate-pulse" />
+                <span className="font-sans text-label-caps tracking-widest uppercase">
+                  {PERSONAL.status} · {PERSONAL.year}
+                </span>
+              </div>
+            </FadeIn>
 
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              opacity: visible ? 1 : 0,
-              transform: visible ? "none" : "translateY(20px)",
-              transition: "all 0.7s ease 0.65s",
-            }}
-          >
-            {[
-              { icon: <EmailIcon fontSize="small" />, label: "victorantoniovicente@gmail.com", href: "mailto:victorantoniovicente@gmail.com" },
-              { icon: <PhoneIcon fontSize="small" />, label: "+55 67 99294-5422", href: "tel:+5567992945422" },
-              { icon: <LaunchIcon fontSize="small" />, label: "LinkedIn", href: "https://www.linkedin.com/in/victor-0-vicente/" },
-              { icon: <GitHubIcon fontSize="small" />, label: "GitHub", href: "https://github.com/victoravicente" },
-            ].map(({ icon, label, href }) => (
-              <Box
-                key={label}
-                component="a"
-                href={href}
-                target="_blank"
-                rel="noopener"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  px: 2.5,
-                  py: 1.25,
-                  borderRadius: "8px",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  color: "rgba(255,255,255,0.7)",
-                  textDecoration: "none",
-                  fontSize: "0.82rem",
-                  transition: "all 0.2s",
-                  "&:hover": {
-                    borderColor: ACCENT,
-                    color: ACCENT,
-                    background: `${ACCENT}0A`,
-                    transform: "translateY(-2px)",
-                  },
-                }}
-              >
-                {icon}
-                {label}
-              </Box>
-            ))}
-          </Box>
+            <FadeIn delay={0.2}>
+              <h1 className="font-display text-display-lg-mobile md:text-display-lg uppercase text-primary mb-6 border-b border-gothic pb-4 inline-block pr-12">
+                SOBRE <span className="text-tertiary opacity-50">//</span> O ENGENHEIRO
+              </h1>
+            </FadeIn>
 
-          <Box
-            sx={{
-              mt: 3,
-              opacity: visible ? 1 : 0,
-              transition: "all 0.7s ease 0.8s",
-            }}
-          >
-            <Typography
-              sx={{
-                fontSize: "0.88rem",
-                fontStyle: "italic",
-                color: "rgba(255,255,255,0.25)",
-                borderLeft: `2px solid ${ACCENT}40`,
-                pl: 2,
-              }}
-            >
-              "Construa hoje o mundo em que você teria orgulho de ser lembrado amanhã."
-            </Typography>
-          </Box>
-        </Box>
-      </Container>
+            <FadeIn delay={0.3}>
+              <p className="font-display text-headline-md text-primary mb-8 leading-tight max-w-2xl">
+                {ABOUT.headline}
+              </p>
+            </FadeIn>
 
-      <style>{`@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }`}</style>
-    </Box>
+            <FadeIn delay={0.4}>
+              <div className="space-y-6 font-sans text-body-main text-on-surface-variant max-w-none mb-12">
+                {ABOUT.paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.5}>
+              <div className="flex flex-wrap gap-4 mb-16">
+                <button onClick={() => scrollTo("projetos")} className="btn-primary">
+                  Ver Projetos
+                </button>
+                <a href={`mailto:${PERSONAL.email}`} className="btn-secondary">
+                  Iniciar Contato
+                </a>
+              </div>
+            </FadeIn>
+
+            {/* Terminal interativo */}
+            <FadeIn delay={0.6}>
+              <div className="w-full bg-terminal-bg border border-gothic flex flex-col mb-16">
+                <div className="border-b border-gothic p-2 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-on-surface-variant text-sm">terminal</span>
+                  <span className="font-mono text-code-block text-on-surface-variant">
+                    ~/projetos/{PERSONAL.brand.toLowerCase()}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <TerminalTyping />
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.7}>
+              <div className="border-t border-gothic pt-8">
+                <h2 className="font-mono text-code-block text-tertiary mb-6 uppercase tracking-widest flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">terminal</span>
+                  ÁREAS_DE_FOCO_TÉCNICO
+                </h2>
+                <ul className="space-y-4 font-mono text-code-block">
+                  {ABOUT.focusAreas.map((area) => (
+                    <li key={area.id} className="flex items-start gap-4 group">
+                      <span className="text-tertiary group-hover:text-primary transition-colors mt-0.5">
+                        [{area.id}]
+                      </span>
+                      <div>
+                        <span className="block text-primary mb-1">{area.title}</span>
+                        <span className="text-on-surface-variant text-sm">{area.description}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
+          </article>
+        </div>
+      </div>
+    </section>
   );
 }
