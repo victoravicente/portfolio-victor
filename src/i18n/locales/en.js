@@ -63,7 +63,7 @@ export const en = {
   ],
   about: {
     headline:
-      "Software engineer with nearly seven years building integrations, automations and portals in a corporate environment.",
+      "Software engineer with more than seven years building integrations, automations and portals in a corporate environment.",
     paragraphs: [
       "Backend developer with a trajectory at a financial cooperative — from web portals to corporate integration gateways. Started as an intern on fullstack applications with ReactJS and Node.js, moved through data and BI, and gradually migrated RPA automations to API-integrated systems.",
       "Today I work with Java/Spring Boot and Python/Django developing integration and process orchestration solutions in production. Software Engineering undergraduate at UFMS, with a technical degree in IT from IFMS.",

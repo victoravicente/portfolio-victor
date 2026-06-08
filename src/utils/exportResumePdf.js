@@ -3,7 +3,9 @@ import { jsPDF } from "jspdf";
 
 const A4_WIDTH_MM = 210;
 const A4_HEIGHT_MM = 297;
-const CANVAS_WIDTH_PX = 794;
+const A4_DPI = 96;
+const CANVAS_WIDTH_PX = A4_WIDTH_MM * (A4_DPI / 25.4);
+const A4_HEIGHT_PX = A4_HEIGHT_MM * (A4_DPI / 25.4);
 
 export async function exportResumePdf(filename) {
   const element = document.getElementById("resume-document");
@@ -17,7 +19,7 @@ export async function exportResumePdf(filename) {
 
   try {
     const canvas = await html2canvas(element, {
-      scale: 2,
+      scale: 1.5,
       useCORS: true,
       backgroundColor: "#ffffff",
       logging: false,
@@ -41,17 +43,17 @@ export async function exportResumePdf(filename) {
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
     const imgData = canvas.toDataURL("image/png");
 
+    let currentPage = 1;
     let position = 0;
-    let heightLeft = imgHeight;
 
-    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-    heightLeft -= pageHeight;
+    while (position < imgHeight) {
+      if (currentPage > 1) {
+        pdf.addPage();
+      }
 
-    while (heightLeft > 0) {
-      position -= pageHeight;
-      pdf.addPage();
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
+      pdf.addImage(imgData, "PNG", 0, -position, imgWidth, imgHeight);
+      position += pageHeight;
+      currentPage++;
     }
 
     pdf.save(filename);

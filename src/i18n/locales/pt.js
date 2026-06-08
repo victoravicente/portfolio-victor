@@ -63,7 +63,7 @@ export const pt = {
   ],
   about: {
     headline:
-      "Engenheiro de software com quase sete anos construindo integrações, automações e portais em ambiente corporativo.",
+      "Engenheiro de software com mais de sete anos construindo integrações, automações e portais em ambiente corporativo.",
     paragraphs: [
       "Desenvolvedor backend com trajetória em uma cooperativa financeira — de portais web a gateways de integração corporativa. Comecei como estagiário em aplicações fullstack com ReactJS e Node.js, passei por dados e BI, e migrei gradualmente automações de RPA para sistemas integrados por APIs.",
       "Hoje trabalho com Java/Spring Boot e Python/Django no desenvolvimento de soluções de integração e orquestração de processos em produção. Graduando em Engenharia de Software pela UFMS, com formação técnica em Informática pelo IFMS.",
