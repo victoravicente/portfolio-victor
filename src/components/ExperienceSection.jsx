@@ -27,10 +27,10 @@ export function ExperienceSection() {
                     !exp.current ? "opacity-90 group-hover:opacity-100" : ""
                   }`}
                 >
-                  <div className="flex justify-between items-center border-b border-gothic px-6 py-2 bg-surface-container-high">
-                    <span className="font-mono text-terminal-sm text-tertiary">{exp.path}</span>
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gothic px-4 sm:px-6 py-3 sm:py-2 bg-surface-container-high">
+                    <span className="font-mono text-terminal-sm text-tertiary break-anywhere">{exp.path}</span>
                     <span
-                      className={`font-sans text-label-caps px-2 py-1 border rounded-full ${
+                      className={`font-sans text-label-caps px-2 py-1 border rounded-full self-start sm:self-auto ${
                         exp.current
                           ? "text-background bg-tertiary border-tertiary"
                           : "text-on-surface-variant border-gothic"

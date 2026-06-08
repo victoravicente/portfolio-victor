@@ -8,13 +8,13 @@ export function SectionHeader({ path, title, subtitle, status }) {
           <div className="w-2 h-2 bg-tertiary animate-pulse" />
         </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
+          <div className="min-w-0">
             {path && (
-              <span className="font-mono text-code-block text-tertiary mb-2 block opacity-70">
+              <span className="font-mono text-code-block text-tertiary mb-2 block opacity-70 break-anywhere">
                 {path}
               </span>
             )}
-            <h2 className="font-display text-display-lg-mobile md:text-display-lg text-primary tracking-tighter uppercase">
+            <h2 className="font-display text-display-lg-mobile md:text-display-lg text-primary uppercase break-words">
               {title}
             </h2>
             {subtitle && (

@@ -39,9 +39,9 @@ export function ExtraSection() {
                   </div>
                 ))}
 
-                <div className="mt-4 flex items-center text-tertiary">
-                  <span>&gt;</span>
-                  <span className="ml-2">{ui.awaitingDirectives}</span>
+                <div className="mt-4 flex items-center text-tertiary min-w-0">
+                  <span className="shrink-0">&gt;</span>
+                  <span className="ml-2 break-words">{ui.awaitingDirectives}</span>
                   <span className="cursor-blink ml-1 inline-block w-2 h-4 bg-tertiary" />
                 </div>
               </div>
@@ -51,8 +51,8 @@ export function ExtraSection() {
           <FadeIn delay={0.2} className="col-span-1 md:col-span-4">
             <div className="border border-gothic bg-background flex flex-col h-full hover:border-tertiary transition-colors duration-300">
               <div className="border-b border-gothic px-4 py-2 flex items-center bg-surface-container-high">
-                <span className="font-mono text-terminal-sm text-tertiary flex items-center gap-2">
-                  <span className="material-symbols-outlined text-base">info</span>
+                <span className="font-mono text-terminal-sm text-tertiary flex items-center gap-2 min-w-0 break-anywhere">
+                  <span className="material-symbols-outlined text-base shrink-0">info</span>
                   {ui.extraContextPath}
                 </span>
               </div>

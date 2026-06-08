@@ -10,7 +10,7 @@ export function ResumeDocument() {
     CONTACT.email,
     CONTACT.github.replace("https://", ""),
     CONTACT.linkedin.replace("https://www.", "").replace("https://", ""),
-  ].join(" · ");
+  ].join(" | ");
 
   return (
     <div id="resume-document" aria-hidden="true">
@@ -79,7 +79,7 @@ export function ResumeDocument() {
             {resume.stackGroups.map((group) => (
               <div key={group.label}>
                 <h3 className="resume-skill-label">{group.label}</h3>
-                <p className="resume-skill-items">{group.items.join(" · ")}</p>
+                <p className="resume-skill-items">{group.items.join(" | ")}</p>
               </div>
             ))}
           </div>

@@ -77,6 +77,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 :root {
@@ -99,6 +100,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-on-surface);
   position: relative;
+  overflow-x: hidden;
   cursor: var(--cursor-default);
   transition: background-color 0.35s ease, color 0.35s ease;
 }
@@ -198,6 +200,25 @@ body::before {
   margin-right: auto;
   padding-left: 16px;
   padding-right: 16px;
+  min-width: 0;
+}
+
+.site-header {
+  overflow-x: clip;
+}
+
+.site-header button,
+.site-header a {
+  line-height: 1;
+}
+
+.terminal-card,
+.terminal-card * {
+  min-width: 0;
+}
+
+.break-anywhere {
+  overflow-wrap: anywhere;
 }
 
 @media (min-width: 768px) {
@@ -312,7 +333,6 @@ body::before {
 }
 
 [data-theme="light"] .nav-cells {
-  display: flex;
   align-items: stretch;
   height: 100%;
   border-left: 1px solid var(--color-gothic);
@@ -321,21 +341,30 @@ body::before {
 [data-theme="light"] .nav-cell {
   display: flex;
   align-items: stretch;
+  min-width: 0;
   border-right: 1px solid var(--color-gothic);
 }
 
 [data-theme="light"] .nav-cell-btn {
-  padding: 0 1.25rem;
+  padding: 0 0.4rem;
   height: 100%;
   display: flex;
   align-items: center;
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-on-surface-variant);
   transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+@media (min-width: 1400px) {
+  [data-theme="light"] .nav-cell-btn {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }
 
 [data-theme="light"] .nav-cell-btn:hover {

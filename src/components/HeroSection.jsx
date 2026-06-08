@@ -149,7 +149,7 @@ export function HeroSection() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <h1 className="font-display text-display-lg-mobile md:text-display-lg uppercase text-primary mb-6 border-b border-gothic pb-4 inline-block pr-12">
+              <h1 className="font-display text-display-lg-mobile md:text-display-lg uppercase text-primary mb-6 border-b border-gothic pb-4 inline-block sm:pr-12 break-words">
                 {ui.aboutTitle} <span className="text-tertiary opacity-50">//</span> {ui.aboutSubtitle}
               </h1>
             </FadeIn>
@@ -169,7 +169,7 @@ export function HeroSection() {
             </FadeIn>
 
             <FadeIn delay={0.5}>
-              <div className="flex flex-wrap gap-4 mb-16">
+              <div className="grid grid-cols-1 sm:flex sm:flex-wrap gap-3 sm:gap-4 mb-16">
                 <button onClick={() => scrollTo("projetos")} className="btn-primary">
                   {ui.viewProjects}
                 </button>

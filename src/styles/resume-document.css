@@ -6,13 +6,14 @@
   width: 210mm;
   min-height: 297mm;
   background: #ffffff;
-  color: #1a1a1a;
-  font-family: "DM Sans", Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-  line-height: 1.45;
+  color: #111111;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 9.2pt;
+  line-height: 1.28;
   box-sizing: border-box;
   pointer-events: none;
   opacity: 0;
+  text-rendering: geometricPrecision;
 }
 
 #resume-document.resume-capturing {
@@ -22,62 +23,71 @@
 
 #resume-document * {
   box-sizing: border-box;
+  hyphens: auto;
 }
 
 .resume-page {
-  padding: 14mm 16mm 12mm;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 11mm 14mm 10mm;
+  background: #ffffff;
 }
 
 .resume-header {
-  border-bottom: 2px solid #1d3d30;
-  padding-bottom: 12px;
-  margin-bottom: 18px;
+  text-align: center;
+  border-bottom: 0.35mm solid #111111;
+  padding-bottom: 5mm;
+  margin-bottom: 4.5mm;
 }
 
 .resume-name {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 22pt;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20pt;
   font-weight: 700;
-  color: #0d1f1a;
-  margin: 0 0 4px;
-  line-height: 1.15;
+  color: #111111;
+  margin: 0 0 1.5mm;
+  line-height: 1.05;
 }
 
 .resume-title {
-  font-size: 12pt;
-  font-weight: 600;
-  color: #2d4a3e;
-  margin: 0 0 6px;
+  font-size: 10.5pt;
+  font-weight: 400;
+  color: #222222;
+  margin: 0 0 1.5mm;
 }
 
 .resume-contact {
-  font-size: 9pt;
-  color: #555555;
+  font-size: 8.6pt;
+  color: #333333;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .resume-section {
-  margin-bottom: 16px;
+  margin-bottom: 3.4mm;
   page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .resume-section-title {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 11pt;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 10.2pt;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #0d1f1a;
-  border-bottom: 1px solid #cccccc;
-  padding-bottom: 4px;
-  margin: 0 0 10px;
+  letter-spacing: 0.04em;
+  color: #111111;
+  border-bottom: 0.2mm solid #999999;
+  padding-bottom: 0.8mm;
+  margin: 0 0 2mm;
 }
 
 .resume-text {
-  font-size: 9.5pt;
-  color: #333333;
-  margin: 0 0 8px;
+  font-size: 9pt;
+  color: #111111;
+  margin: 0 0 1.6mm;
   text-align: justify;
+  text-align-last: left;
+  overflow-wrap: normal;
 }
 
 .resume-company-row {
@@ -85,114 +95,125 @@
   justify-content: space-between;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 4px;
+  gap: 2mm;
+  margin-bottom: 0.6mm;
 }
 
 .resume-company {
-  font-size: 10.5pt;
+  font-size: 9.8pt;
   font-weight: 700;
-  color: #0d1f1a;
+  color: #111111;
   margin: 0;
 }
 
 .resume-role {
-  font-size: 9pt;
-  font-weight: 600;
-  color: #2d4a3e;
-  margin: 0 0 10px;
+  font-size: 8.8pt;
+  font-weight: 400;
+  color: #222222;
+  margin: 0 0 1.8mm;
 }
 
 .resume-period {
-  font-size: 9pt;
-  color: #555555;
-  font-weight: 500;
+  font-size: 8.4pt;
+  color: #333333;
+  font-weight: 400;
+  white-space: nowrap;
 }
 
 .resume-timeline-item {
-  margin-bottom: 10px;
-  padding-left: 10px;
-  border-left: 2px solid #1d3d30;
+  margin-bottom: 2mm;
+  padding-left: 3mm;
+  border-left: 0.25mm solid #999999;
+  break-inside: avoid;
 }
 
 .resume-timeline-period {
-  font-size: 9pt;
+  font-size: 8.4pt;
   font-weight: 600;
-  color: #444444;
-  margin-bottom: 4px;
+  color: #222222;
+  margin-bottom: 0.8mm;
 }
 
 .resume-list {
   margin: 0;
-  padding-left: 16px;
+  padding-left: 4mm;
 }
 
 .resume-list li {
-  font-size: 9pt;
-  color: #333333;
-  margin-bottom: 3px;
+  font-size: 8.8pt;
+  color: #111111;
+  margin-bottom: 0.8mm;
+  padding-left: 0.5mm;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .resume-project {
-  margin-bottom: 10px;
+  margin-bottom: 2.2mm;
+  break-inside: avoid;
 }
 
 .resume-project-name {
-  font-size: 10pt;
+  font-size: 9.4pt;
   font-weight: 700;
-  color: #0d1f1a;
-  margin: 0 0 2px;
+  color: #111111;
+  margin: 0 0 0.5mm;
 }
 
 .resume-project-stack {
-  font-size: 8.5pt;
+  font-size: 8.1pt;
   font-style: italic;
-  color: #2d4a3e;
-  margin: 0 0 4px;
+  color: #333333;
+  margin: 0 0 0.8mm;
+  overflow-wrap: anywhere;
 }
 
 .resume-project-desc {
-  font-size: 9pt;
-  color: #333333;
+  font-size: 8.7pt;
+  color: #111111;
   margin: 0;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .resume-edu-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: 4mm;
+  margin-bottom: 1.8mm;
+  break-inside: avoid;
 }
 
 .resume-edu-degree {
-  font-size: 10pt;
+  font-size: 9.2pt;
   font-weight: 700;
-  color: #0d1f1a;
-  margin: 0 0 2px;
+  color: #111111;
+  margin: 0 0 0.5mm;
 }
 
 .resume-edu-school {
-  font-size: 9pt;
-  color: #555555;
+  font-size: 8.6pt;
+  color: #333333;
   margin: 0;
 }
 
 .resume-skills-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px 20px;
+  gap: 1.8mm 6mm;
 }
 
 .resume-skill-label {
-  font-size: 9pt;
+  font-size: 8.8pt;
   font-weight: 700;
-  color: #2d4a3e;
-  margin: 0 0 2px;
+  color: #111111;
+  margin: 0 0 0.5mm;
 }
 
 .resume-skill-items {
-  font-size: 8.5pt;
-  color: #444444;
+  font-size: 8.2pt;
+  color: #222222;
   margin: 0;
+  overflow-wrap: anywhere;
 }

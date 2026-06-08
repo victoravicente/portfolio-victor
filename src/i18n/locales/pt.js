@@ -20,6 +20,7 @@ export const pt = {
     downloadCvPdf: "CV PDF",
     downloadCvMobile: "Baixar CV (PDF)",
     generatingPdf: "Gerando PDF...",
+    downloadCvRetry: "Tentar novamente",
     initiateContact: "Iniciar Contato",
     footerCta: "Vamos trabalhar juntos.",
     footerLedger: "REGISTRO_CRIPTOGRAFADO",

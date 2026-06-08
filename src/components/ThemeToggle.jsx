@@ -17,7 +17,7 @@ export function ThemeToggle({ className = "" }) {
       <span className="material-symbols-outlined text-base leading-none">
         {isLight ? "dark_mode" : "light_mode"}
       </span>
-      <span className="hidden lg:inline">{isLight ? ui.themeDark : ui.themeLight}</span>
+      <span className="hidden 2xl:inline">{isLight ? ui.themeDark : ui.themeLight}</span>
     </button>
   );
 }

@@ -21,12 +21,12 @@ export function EducationSection() {
               <article className="bg-surface-container border border-gothic p-8 hover:border-tertiary transition-colors duration-500 group relative overflow-hidden flex flex-col justify-between min-h-[280px]">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gothic to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                <header className="flex justify-between items-start mb-8 gap-4">
-                  <div className="flex flex-col gap-2">
+                <header className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-8 gap-4">
+                  <div className="flex flex-col gap-2 min-w-0">
                     <span className="font-mono text-code-block text-primary">{edu.degree}</span>
                     <h3 className="font-display text-headline-md text-primary">{edu.full}</h3>
                   </div>
-                  <div className="font-sans text-label-caps text-on-surface-variant border border-gothic px-3 py-1 rounded-full whitespace-nowrap">
+                  <div className="font-sans text-label-caps text-on-surface-variant border border-gothic px-3 py-1 rounded-full whitespace-nowrap self-start">
                     [ {edu.period} ]
                   </div>
                 </header>

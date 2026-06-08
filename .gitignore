@@ -24,18 +24,11 @@ dist-ssr/
 .DS_Store
 Thumbs.db
 
-# Logs
-logs
-*.log
-
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-
-# Cache
+# Debug & Cache
 .cache/
 .parcel-cache
+.edge-headless/
+.edge-cdp/
+debug/
+.debug/
+.vscode-test/
