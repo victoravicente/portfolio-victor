@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CONTACT } from "../constants";
 import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
@@ -12,6 +12,7 @@ export function Navbar() {
   const { personal, nav, ui } = content;
   const [active, setActive] = useState("sobre");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,13 +31,26 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [nav]);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setMobileOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [mobileOpen]);
+
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
   };
 
   return (
-    <header className="site-header fixed top-0 left-0 w-full z-50 bg-background/90 backdrop-blur-sm border-b border-gothic transition-colors duration-350">
+    <header ref={navRef} className="site-header fixed top-0 left-0 w-full z-50 bg-background/90 backdrop-blur-sm border-b border-gothic transition-colors duration-350">
       <nav className="relative grid grid-cols-[auto_1fr_auto] items-center w-full h-16 max-w-max-width mx-auto gap-3 xl:gap-4">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
