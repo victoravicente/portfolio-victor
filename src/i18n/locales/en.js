@@ -54,6 +54,9 @@ export const en = {
     extraRoboticsDesc: "First exposure to hardware programming and technical teamwork.",
     extraCompetitions: "Competitions",
     extraCompetitionsDesc: "Development, construction and testing of robotic systems at IFMS events.",
+    skillLevelBeginner: "Beginner",
+    skillLevelIntermediate: "Intermediate",
+    skillLevelAdvanced: "Advanced",
     labels: { status: "STATUS", class: "CLASS", directive: "DIRECTIVE" },
   },
   terminal: [

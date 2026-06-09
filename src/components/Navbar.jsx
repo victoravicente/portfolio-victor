@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { CONTACT } from "../constants";
 import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
+import { useAnalytics } from "../hooks/useAnalytics";
 import { ExportResumeButton } from "./ExportResumeButton";
 import { LanguageToggle } from "./LanguageToggle";
 import { ThemeToggle } from "./ThemeToggle";
@@ -9,6 +10,7 @@ import { ThemeToggle } from "./ThemeToggle";
 export function Navbar() {
   const { content } = useLanguage();
   const { isLight } = useTheme();
+  const { trackEvent } = useAnalytics();
   const { personal, nav, ui } = content;
   const [active, setActive] = useState("sobre");
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -45,6 +47,10 @@ export function Navbar() {
   }, [mobileOpen]);
 
   const scrollTo = (id) => {
+    trackEvent("section_navigation", {
+      "section": id,
+      "device": mobileOpen ? "mobile" : "desktop"
+    });
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
   };
@@ -104,6 +110,10 @@ export function Navbar() {
           </div>
           <a
             href={`mailto:${CONTACT.email}`}
+            onClick={() => trackEvent("contact_click", {
+              "method": "email",
+              "location": "navbar"
+            })}
             className="hidden xl:inline-flex font-sans text-label-caps h-10 px-2 xl:px-3 border border-gothic hover:border-tertiary hover:text-tertiary transition-colors text-on-surface uppercase tracking-widest items-center justify-center whitespace-nowrap"
           >
             {ui.contact}

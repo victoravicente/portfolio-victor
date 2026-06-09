@@ -54,6 +54,9 @@ export const pt = {
     extraRoboticsDesc: "Primeiro contato com programação de hardware e trabalho em equipe técnica.",
     extraCompetitions: "Competições",
     extraCompetitionsDesc: "Desenvolvimento, construção e testes de sistemas robóticos em eventos do IFMS.",
+    skillLevelBeginner: "Iniciante",
+    skillLevelIntermediate: "Intermediário",
+    skillLevelAdvanced: "Avançado",
     labels: { status: "STATUS", class: "CLASSE", directive: "DIRETRIZ" },
   },
   terminal: [

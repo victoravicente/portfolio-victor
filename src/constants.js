@@ -13,10 +13,10 @@ export const SKILL_LAYERS = [
     category: "BACKEND",
     icon: "dns",
     items: [
-      { name: "Java / Spring Boot", level: 90 },
-      { name: "Python / Django", level: 88 },
-      { name: "REST APIs", level: 92 },
-      { name: "Node.js", level: 75 },
+      { name: "Java / Spring Boot", level: 5 },
+      { name: "Python / Django", level: 4 },
+      { name: "REST APIs", level: 5 },
+      { name: "Node.js", level: 4 },
     ],
   },
   {
@@ -24,10 +24,10 @@ export const SKILL_LAYERS = [
     category: "FRONTEND",
     icon: "code",
     items: [
-      { name: "React / Next.js", level: 80 },
-      { name: "TypeScript", level: 75 },
-      { name: "Tailwind CSS", level: 85 },
-      { name: "HTML / CSS", level: 82 },
+      { name: "React / Next.js", level: 4 },
+      { name: "TypeScript", level: 4 },
+      { name: "Tailwind CSS", level: 4 },
+      { name: "HTML / CSS", level: 4 },
     ],
   },
   {
@@ -35,11 +35,11 @@ export const SKILL_LAYERS = [
     category: "INFRA & DADOS",
     icon: "cloud",
     items: [
-      { name: "UiPath / Power Automate", level: 85 },
-      { name: "HashiCorp Vault / Consul", level: 82 },
-      { name: "Databricks / SQL", level: 80 },
-      { name: "Grafana", level: 79 },
-      { name: "Docker / Kubernetes", level: 78 },
+      { name: "UiPath / Power Automate", level: 4 },
+      { name: "HashiCorp Vault / Consul", level: 4 },
+      { name: "Databricks / SQL", level: 4 },
+      { name: "Grafana", level: 4 },
+      { name: "Docker / Kubernetes", level: 4 },
     ],
   },
 ];

@@ -1,8 +1,10 @@
 import { CONTACT } from "../constants";
 import { useLanguage } from "../context/LanguageContext";
+import { useAnalytics } from "../hooks/useAnalytics";
 
 export function Footer() {
   const { content } = useLanguage();
+  const { trackEvent } = useAnalytics();
   const { personal, nav, ui } = content;
 
   const links = [
@@ -10,6 +12,22 @@ export function Footer() {
     { label: "LinkedIn", href: CONTACT.linkedin },
     { label: "Email", href: `mailto:${CONTACT.email}` },
   ];
+
+  const handleLinkClick = (label, href) => {
+    const method = href.includes("github") ? "github" : 
+                   href.includes("linkedin") ? "linkedin" : "email";
+    trackEvent("contact_click", {
+      "method": method,
+      "location": "footer"
+    });
+  };
+
+  const handleNavClick = (id) => {
+    trackEvent("section_navigation", {
+      "section": id,
+      "device": "footer"
+    });
+  };
 
   return (
     <footer id="contato" className="border-t border-gothic bg-background">
@@ -23,6 +41,7 @@ export function Footer() {
             <li key={label}>
               <a
                 href={href}
+                onClick={() => handleLinkClick(label, href)}
                 target={href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 className="font-sans text-body-main text-on-surface-variant hover:text-tertiary transition-all duration-200 uppercase tracking-widest"
@@ -43,6 +62,7 @@ export function Footer() {
               <a
                 key={id}
                 href={`#${id}`}
+                onClick={() => handleNavClick(id)}
                 className="font-sans text-label-caps text-on-surface-variant hover:text-primary underline decoration-tertiary hover:-translate-y-0.5 transition-transform uppercase tracking-widest"
               >
                 {label}

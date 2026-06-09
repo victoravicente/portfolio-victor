@@ -1,0 +1,50 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="256" height="256" fill="transparent"/>
+  
+  <!-- Main character head -->
+  <g>
+    <!-- Head base (white) -->
+    <path d="M120 40C95 40 75 60 75 85L75 145C75 170 95 190 120 190C145 190 165 170 165 145L165 85C165 60 145 40 120 40Z" fill="#ffffff" stroke="#2d4a52" stroke-width="3"/>
+    
+    <!-- Ears -->
+    <ellipse cx="65" cy="75" rx="15" ry="20" fill="#ffffff" stroke="#2d4a52" stroke-width="2.5"/>
+    <ellipse cx="175" cy="75" rx="15" ry="20" fill="#ffffff" stroke="#2d4a52" stroke-width="2.5"/>
+    
+    <!-- Eyes -->
+    <circle cx="95" cy="100" r="8" fill="#2d4a52"/>
+    <circle cx="145" cy="100" r="8" fill="#2d4a52"/>
+    <circle cx="98" cy="97" r="2.5" fill="#ffffff"/>
+    <circle cx="148" cy="97" r="2.5" fill="#ffffff"/>
+    
+    <!-- Smile -->
+    <path d="M100 125Q120 135 140 125" stroke="#2d4a52" stroke-width="3" fill="none" stroke-linecap="round"/>
+    
+    <!-- Mask/Tech accent -->
+    <path d="M85 110Q120 120 155 110" fill="#a8c9b8" opacity="0.6"/>
+    
+    <!-- Dark markings -->
+    <path d="M70 85Q75 90 70 100" stroke="#2d4a52" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Headphones -->
+  <g>
+    <!-- Left ear cup -->
+    <circle cx="50" cy="90" r="18" fill="none" stroke="#2d4a52" stroke-width="3"/>
+    <circle cx="50" cy="90" r="12" fill="#a8c9b8" opacity="0.7"/>
+    <circle cx="45" cy="85" r="3" fill="#ffffff"/>
+    
+    <!-- Right ear cup -->
+    <circle cx="190" cy="90" r="18" fill="none" stroke="#2d4a52" stroke-width="3"/>
+    <circle cx="190" cy="90" r="12" fill="#a8c9b8" opacity="0.7"/>
+    
+    <!-- Headband left -->
+    <path d="M50 70Q40 50 50 40" stroke="#2d4a52" stroke-width="4" fill="none" stroke-linecap="round"/>
+    
+    <!-- Headband right -->
+    <path d="M190 70Q200 50 190 40" stroke="#2d4a52" stroke-width="4" fill="none" stroke-linecap="round"/>
+    
+    <!-- Top band -->
+    <path d="M50 38Q120 20 190 38" stroke="#2d4a52" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

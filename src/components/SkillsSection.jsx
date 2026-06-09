@@ -27,7 +27,7 @@ export function SkillsSection() {
                   </span>
                   <span className="material-symbols-outlined text-tertiary text-sm">{layer.icon}</span>
                 </div>
-                <div className="p-6 flex flex-col gap-6 flex-grow">
+                <div className="p-6 flex flex-col gap-8 flex-grow">
                   {[...layer.items]
                     .sort((a, b) => b.level - a.level)
                     .map((skill, i) => (
